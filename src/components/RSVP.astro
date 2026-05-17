@@ -1,0 +1,83 @@
+---
+import { wedding } from '../content/wedding';
+---
+
+<section id="rsvp" class="rsvp" aria-labelledby="rsvp-heading">
+  <div class="rsvp__inner" data-animate>
+    <span class="section-label">Eure Antwort</span>
+    <h2 id="rsvp-heading">RSVP</h2>
+    <div class="ornament">✦</div>
+
+    <p class="rsvp__text">
+      Wir würden uns sehr freuen, diesen besonderen Tag mit euch zu feiern.<br />
+      <!--
+        [PLACEHOLDER] rsvpDeadline wird aus src/content/wedding.ts gelesen.
+        Bitte meldet euch bis [Datum] zurück.
+      -->
+      Bitte meldet euch bis <strong>{wedding.rsvpDeadline}</strong> zurück.
+    </p>
+
+    <!--
+      [PLACEHOLDER] rsvpLink in src/content/wedding.ts durch den echten
+      Formular-Link ersetzen (z. B. Google Forms, Typeform, eigenes Formular).
+    -->
+    <a class="rsvp__btn" href={wedding.rsvpLink}>Jetzt zusagen →</a>
+  </div>
+</section>
+
+<style>
+  .rsvp {
+    background: linear-gradient(
+      135deg,
+      var(--color-blush-light) 0%,
+      var(--color-bg-alt)      55%,
+      var(--color-blush)       100%
+    );
+    padding: var(--section-padding);
+    text-align: center;
+  }
+
+  .rsvp__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .rsvp__inner h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-brown);
+  }
+
+  .rsvp__text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--color-brown-mid);
+    line-height: 1.95;
+    margin-bottom: 2.75rem;
+  }
+
+  .rsvp__text strong {
+    color: var(--color-brown);
+    font-weight: 500;
+  }
+
+  .rsvp__btn {
+    display: inline-block;
+    padding: 0.9rem 3.25rem;
+    border: 1px solid var(--color-brown);
+    color: var(--color-brown);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.28s ease, color 0.28s ease;
+  }
+
+  .rsvp__btn:hover,
+  .rsvp__btn:focus-visible {
+    background: var(--color-brown);
+    color: var(--color-bg);
+    outline: none;
+  }
+</style>

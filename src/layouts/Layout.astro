@@ -1,0 +1,148 @@
+---
+import { wedding } from '../content/wedding';
+
+interface Props {
+  title?:       string;
+  description?: string;
+}
+
+const {
+  title = `${wedding.partner1} & ${wedding.partner2} · ${wedding.date}`,
+  description = `Wir heiraten! Alle Informationen zur Hochzeit von ${wedding.partner1} & ${wedding.partner2} am ${wedding.date}.`,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Scroll-Animation: Elemente mit [data-animate] blenden beim Einrollen ein -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+      );
+
+      document.querySelectorAll('[data-animate]').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* ── Design Tokens ─────────────────────────────────────────── */
+  :root {
+    --color-bg:           #faf8f4;    /* ivory */
+    --color-bg-alt:       #f5ede6;    /* warmes Ivory */
+    --color-blush:        #e8c4be;    /* zartes Blush */
+    --color-blush-light:  #f2deda;    /* helles Blush */
+    --color-greige:       #bdb0a2;    /* warmes Greige */
+    --color-brown:        #3d2b1f;    /* tiefer Textton */
+    --color-brown-mid:    #6b4f3a;    /* mittleres Braun */
+    --color-gold:         #c2966a;    /* warmes Gold */
+
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+    --section-padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem);
+    --max-width: 68rem;
+  }
+
+  /* ── Reset ──────────────────────────────────────────────────── */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
+
+  body {
+    font-family: var(--font-serif);
+    background-color: var(--color-bg);
+    color: var(--color-brown);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img  { display: block; max-width: 100%; }
+  a    { color: inherit; }
+  h1, h2, h3 { line-height: 1.2; font-weight: 400; }
+
+  /* ── Scroll-Animationen ─────────────────────────────────────── */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  [data-animate].in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-animate][data-delay="1"] { transition-delay: 0.10s; }
+  [data-animate][data-delay="2"] { transition-delay: 0.20s; }
+  [data-animate][data-delay="3"] { transition-delay: 0.30s; }
+  [data-animate][data-delay="4"] { transition-delay: 0.42s; }
+  [data-animate][data-delay="5"] { transition-delay: 0.55s; }
+
+  /* ── Ornament-Trennlinie ────────────────────────────────────── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-block: 2rem;
+    color: var(--color-gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    flex: 1;
+    max-width: 8rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.45;
+  }
+
+  /* ── Abschnitts-Label (global, scoped per component via Astro) ─ */
+  .section-label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+  }
+</style>

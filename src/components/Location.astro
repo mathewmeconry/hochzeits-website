@@ -1,0 +1,74 @@
+---
+import { wedding } from '../content/wedding';
+---
+
+<section id="location" class="location" aria-labelledby="location-heading">
+  <div class="location__inner">
+    <div class="location__text" data-animate>
+      <span class="section-label">Wo wir feiern</span>
+      <h2 id="location-heading">{wedding.venue.name}</h2>
+      <div class="ornament">✦</div>
+      <!-- [PLACEHOLDER] Adresse aus wedding.ts -->
+      <address class="location__address">{wedding.venue.address}</address>
+    </div>
+
+    <div class="location__map" data-animate data-delay="2">
+      <!--
+        [PLACEHOLDER] Ersetze mapsEmbedUrl in src/content/wedding.ts durch eine
+        echte Google-Maps-Einbettungs-URL (Maps → Teilen → Karte einbetten).
+      -->
+      <iframe
+        src={wedding.venue.mapsEmbedUrl}
+        title={`Karte: ${wedding.venue.name}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .location {
+    background: var(--color-bg-alt);
+    padding: var(--section-padding);
+  }
+
+  .location__inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) {
+    .location__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .location__text h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-brown);
+  }
+
+  .location__address {
+    font-style: normal;
+    font-size: 1.1rem;
+    color: var(--color-brown-mid);
+    line-height: 1.9;
+  }
+
+  .location__map iframe {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: none;
+    border-radius: 2px;
+    filter: grayscale(15%) sepia(8%);
+    box-shadow: 0 6px 40px rgba(61, 43, 31, 0.09);
+  }
+</style>

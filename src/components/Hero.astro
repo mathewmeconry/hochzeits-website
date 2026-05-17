@@ -1,0 +1,140 @@
+---
+import { wedding } from '../content/wedding';
+---
+
+<!--
+  Hero-Hintergrundbild:
+  Um ein Foto zu verwenden, ergänze das Inline-Style-Attribut der Section:
+    style="--hero-bg-image: url('/images/hero.jpg')"
+  und setze die Overlay-Opacity auf einen passenden Wert (z. B. 0.55).
+  [PLACEHOLDER] Aktuell nur CSS-Farbverlauf ohne Foto.
+-->
+<section class="hero" aria-label="Willkommen">
+  <!-- [PLACEHOLDER] Foto-Overlay — wird sichtbar, sobald --hero-bg-image gesetzt ist -->
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow" data-animate>Wir heiraten</p>
+
+    <h1 class="hero__names" data-animate data-delay="2">
+      <span>{wedding.partner1}</span>
+      <span class="hero__amp">&amp;</span>
+      <span>{wedding.partner2}</span>
+    </h1>
+
+    <div class="ornament" data-animate data-delay="3">✦</div>
+
+    <p class="hero__date" data-animate data-delay="4">
+      <time datetime={wedding.dateISO}>{wedding.date}</time>
+    </p>
+
+    <p class="hero__venue" data-animate data-delay="5">{wedding.venue.name}</p>
+  </div>
+
+  <a class="hero__scroll-hint" href="#location" aria-label="Weiter nach unten">↓</a>
+</section>
+
+<style>
+  .hero {
+    /*
+     * [PLACEHOLDER] --hero-bg-image: url('/images/hero.jpg');
+     * Setze diese Variable (inline oder via CSS) sobald ein Hochzeitsfoto vorliegt.
+     */
+    --hero-bg-image: none; /* [PLACEHOLDER] */
+
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    overflow: hidden;
+
+    background: linear-gradient(
+      155deg,
+      var(--color-bg)           0%,
+      var(--color-blush-light)  38%,
+      var(--color-blush)        68%,
+      var(--color-bg-alt)       100%
+    );
+  }
+
+  /* Zeigt ein Foto, wenn --hero-bg-image gesetzt ist */
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-bg-image);
+    background-size: cover;
+    background-position: center;
+    /* [PLACEHOLDER] Opacity auf z. B. 1 setzen und Farbverlauf-Overlay ergänzen */
+    opacity: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+  }
+
+  .hero__eyebrow {
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    font-weight: 400;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--color-brown-mid);
+    margin-bottom: 1.75rem;
+  }
+
+  .hero__names {
+    font-size: clamp(3.5rem, 11vw, 7.5rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.01em;
+    color: var(--color-brown);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15em 0.55em;
+  }
+
+  .hero__amp {
+    font-size: 0.6em;
+    color: var(--color-gold);
+    font-style: normal;
+  }
+
+  .hero__date {
+    font-size: clamp(1.05rem, 2.8vw, 1.45rem);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--color-brown-mid);
+  }
+
+  .hero__venue {
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--color-greige);
+    margin-top: 0.55rem;
+  }
+
+  .hero__scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    color: var(--color-gold);
+    text-decoration: none;
+    animation: hero-bounce 2.6s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes hero-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(0.55rem); }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { wedding } from '../content/wedding';
+---
+
+<footer class="footer" aria-label="Fußzeile">
+  <div class="footer__inner">
+    <p class="footer__names">
+      <span>{wedding.partner1}</span>
+      <span class="footer__amp">&amp;</span>
+      <span>{wedding.partner2}</span>
+    </p>
+
+    <div class="ornament footer__ornament">✦</div>
+
+    <time class="footer__date" datetime={wedding.dateISO}>{wedding.date}</time>
+
+    <p class="footer__tagline">Wir freuen uns auf euch.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-brown);
+    color: var(--color-blush-light);
+    padding: 5.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer__inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  .footer__names {
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-blush-light);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.15em 0.55em;
+  }
+
+  .footer__amp {
+    font-size: 0.7em;
+    color: var(--color-gold);
+    font-style: normal;
+  }
+
+  .footer__ornament {
+    color: var(--color-gold);
+    opacity: 0.65;
+  }
+
+  .footer__date {
+    display: block;
+    font-size: 1rem;
+    letter-spacing: 0.22em;
+    color: var(--color-greige);
+  }
+
+  .footer__tagline {
+    margin-top: 1.75rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+    color: var(--color-greige);
+    opacity: 0.65;
+  }
+</style>

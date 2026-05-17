@@ -1,0 +1,79 @@
+---
+import { wedding } from '../content/wedding';
+---
+
+<section id="fotos" class="photos" aria-labelledby="photos-heading">
+  <div class="photos__inner" data-animate>
+    <span class="section-label">Erinnerungen</span>
+    <h2 id="photos-heading">Fotos</h2>
+    <div class="ornament">✦</div>
+
+    <p class="photos__text">
+      Teilt eure schönsten Erinnerungen an unseren gemeinsamen Tag mit uns und allen Gästen.
+    </p>
+
+    <!--
+      [PLACEHOLDER] photosLink in src/content/wedding.ts durch den echten
+      Fotoalbum-Link ersetzen (z. B. Google Fotos, iCloud, eigene Galerie).
+      Upload-Logik noch nicht implementiert — Link reicht vorerst.
+    -->
+    <a class="photos__btn" href={wedding.photosLink}>Fotos teilen →</a>
+
+    <p class="photos__note">
+      <!-- [PLACEHOLDER] Plattform-Hinweis ergänzen, z. B. „Über Google Fotos teilen" -->
+    </p>
+  </div>
+</section>
+
+<style>
+  .photos {
+    background: var(--color-bg-alt);
+    padding: var(--section-padding);
+    text-align: center;
+  }
+
+  .photos__inner {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .photos__inner h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-brown);
+  }
+
+  .photos__text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--color-brown-mid);
+    line-height: 1.95;
+    margin-bottom: 2.75rem;
+  }
+
+  .photos__btn {
+    display: inline-block;
+    padding: 0.9rem 3.25rem;
+    background: var(--color-blush);
+    color: var(--color-brown);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.28s ease;
+  }
+
+  .photos__btn:hover,
+  .photos__btn:focus-visible {
+    background: var(--color-blush-light);
+    outline: none;
+  }
+
+  .photos__note {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-greige);
+    min-height: 1.4em; /* reserve space for placeholder text */
+  }
+</style>

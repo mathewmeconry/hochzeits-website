@@ -1,0 +1,113 @@
+---
+// [PLACEHOLDER] Ersetze die Platzhaltergänge mit den tatsächlichen Menüdetails.
+const courses = [
+  {
+    label:       'Vorspeise',
+    title:       'Platzhalter Vorspeise',                    // [PLACEHOLDER]
+    description: 'Beschreibung der Vorspeise nach Wahl.',   // [PLACEHOLDER]
+  },
+  {
+    label:       'Hauptgang',
+    title:       'Platzhalter Hauptgang',                    // [PLACEHOLDER]
+    description: 'Beschreibung des Hauptgangs nach Wahl.',  // [PLACEHOLDER]
+  },
+  {
+    label:       'Dessert',
+    title:       'Platzhalter Dessert',                      // [PLACEHOLDER]
+    description: 'Beschreibung des Desserts nach Wahl.',    // [PLACEHOLDER]
+  },
+] as const;
+---
+
+<section id="menu" class="menu" aria-labelledby="menu-heading">
+  <div class="menu__inner">
+    <div class="menu__header" data-animate>
+      <span class="section-label">Was wir genießen</span>
+      <h2 id="menu-heading">Menü</h2>
+      <div class="ornament">✦</div>
+    </div>
+
+    <ol class="menu__courses" role="list">
+      {courses.map((course, i) => (
+        <li class="menu__course" data-animate data-delay={String(i + 1)}>
+          <span class="menu__course-label">{course.label}</span>
+          <h3 class="menu__course-title">{course.title}</h3>
+          <p class="menu__course-desc">{course.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .menu {
+    background: var(--color-bg);
+    padding: var(--section-padding);
+  }
+
+  .menu__inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  .menu__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .menu__header h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-brown);
+  }
+
+  .menu__courses {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 2.5rem 3.5rem;
+  }
+
+  .menu__course {
+    position: relative;
+    text-align: center;
+    padding: 2.75rem 2rem;
+    border: 1px solid var(--color-blush);
+    border-radius: 2px;
+  }
+
+  /* Inner decorative border */
+  .menu__course::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--color-blush-light);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .menu__course-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.85rem;
+  }
+
+  .menu__course-title {
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-brown);
+    margin-bottom: 0.75rem;
+  }
+
+  .menu__course-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-brown-mid);
+    line-height: 1.85;
+  }
+</style>
