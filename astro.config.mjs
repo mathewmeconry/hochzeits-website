@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://mathewmeconry.github.io/hochzeits-website', 
+  site: 'https://mathewmeconry.github.io',
+  base: '/hochzeits-website',
   output: 'static',
 });
